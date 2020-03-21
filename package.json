@@ -1,20 +1,33 @@
 {
-  "name": "politicrazy",
+  "name": "estracia",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "license": "ISC",
+  "homepage": "https://politicrazy.herokuapp.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://urkovi@bitbucket.org/frontendgames/politicrazy.git"
+  },
   "dependencies": {
+    "@testing-library/dom": "^7.0.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "auth0-js": "^9.12.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "typescript": "^3.8.3"
   },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "resolutions": {
+    "@babel/preset-env": "^7.8.7"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -23,6 +36,7 @@
     "production": [
       ">0.2%",
       "not dead",
+      "not ie <= 11",
       "not op_mini all"
     ],
     "development": [
