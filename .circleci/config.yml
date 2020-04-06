@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8
+    branches:
+      only:
+        - master
+    steps:
+      - checkout
+      - restore_cache: # special step to restore the dependency cache
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - save_cache: # special step to save the dependency cache
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run: # run tests
+          name: Run Test and Coverage
+          command: |
+            yarn run build
+          #  ./cc-test-reporter before-build
+          #  npm test -- --coverage
+          #  ./cc-test-reporter after-build --exit-code $?
+      - run:
+          name: Deploy Master to Heroku
+          command: |
+            git push https://heroku:0cbd670e-9095-4524-b802-5eba80bccffe@git.heroku.com/politicrazy.git master
+
