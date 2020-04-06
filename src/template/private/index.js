@@ -3,23 +3,14 @@ import * as Proptypes from "prop-types";
 import Header  from '../header/AppHeader';
 import Footer  from  '../footer/AppFooter';
 export default class PrivateLayout extends Component {
-    /*
-    componentDidMount() {
-        const { renewSession } = this.props.auth;
-        if (localStorage.getItem('logged') === 'true') {
-            renewSession();
-        }
-    }
-    */
+
     render() {
         const Component = this.props.component;
-        const route = this.props.route;
-        const auth = this.props.auth;
         return (
             <React.Fragment>
-                <Header route={route} auth={auth}/>
+                <Header/>
                 <main className='container-fluid content'>
-                    <Component route={route} auth={auth}/>
+                    <Component />
                 </main>
                 <Footer/>
             </React.Fragment>
@@ -29,6 +20,6 @@ export default class PrivateLayout extends Component {
 }
 
 PrivateLayout.propTypes = {
-    route: Proptypes.object.isRequired,
-    auth: Proptypes.object.isRequired
+    component: Proptypes.oneOfType([Proptypes.element, Proptypes.func])
+        .isRequired
 };

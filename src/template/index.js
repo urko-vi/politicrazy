@@ -1,86 +1,50 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import _ from 'lodash';
-import PrivateLayout from './private';
-import PublicLayout  from './public';
-import history from '../components/auth/History';
 import privateRoutes from './routes/privateRoutes';
+import ViewComponent from './routes/viewComponent';
 import publicRoutes  from './routes/publicRoutes';
-import sessionRoutes from './routes/sessionRoutes';
 import * as Proptypes from "prop-types";
-import NotFound from './public/notFound';
+
 import {Home} from '../components/home/index';
-import Auth from '../components/auth/Auth';
+import {useAuth0} from '../modules/common/auth/Auth';
+import Loading from '../components/loading/index';
 
 
 
-class Template extends Component {
+const Template = () => {
 
-    constructor(props) {
-        super(props);
-        this.auth = new Auth(this.props.dispatch);
+    const {loading, isAuthenticated} = useAuth0();
+
+    if (loading) {
+        return <Loading error={null} pastDelay={true} timedOut={null}/>;
     }
+    /*
+    import NotFound from './public/notFound';
+    <ViewComponent component={NotFound} />
+    */
+    const routes = loadRoutes(isAuthenticated);
+    return (
+        <Router>
+            <Switch>
+                <ViewComponent component={Home} path="/"/>
+                { _.map(routes, (route, key) => {
+                    const { component, path } = route;
+                    console.log(path);
+                    return  <ViewComponent component={component} path={path} key={key}/>
+                    })
+                }
+            </Switch>
+        </Router>
+    );
+};
 
-    render() {
-        const { isAuthenticated } = this.auth;
-
-        return (
-            <Router history={history}>
-                <Switch>
-
-                    { _.map(publicRoutes, (route, key) => {
-                        const { component, path } = route;
-                        return (
-                            <Route
-                                exact
-                                path={path}
-                                key={key}
-                                render={ (route) => <PublicLayout component={component} route={route} auth={this.auth}/>}
-                            />
-                        )
-                    }) }
-
-                    { _.map(privateRoutes, (route, key) => {
-                        const { component, path } = route;
-                        return (
-                            <Route
-                                exact
-                                path={path}
-                                key={key}
-                                render={ (route) =>
-                                    isAuthenticated()? (
-                                        <PrivateLayout component={component} route={route}  auth={this.auth}/>
-                                    ) : (
-                                        <PublicLayout auth={this.auth} component={Home} route={route} />
-                                    )
-                                }
-                            />
-                        )
-                    }) }
-
-                    { _.map(sessionRoutes, (route, key) => {
-                        const { component, path } = route;
-                        return (
-                            <Route
-                                exact
-                                path={path}
-                                key={key}
-                                render={ (route) =>
-                                    isAuthenticated() ? (
-                                        <Redirect to="/"/>
-                                    ) : (
-                                        <PublicLayout auth={this.auth} component={component} route={route} />
-                                    )
-                                }
-                            />
-                        )
-                    }) }
-
-                    <Route component={ NotFound } />
-                </Switch>
-            </Router>
-        );
+function loadRoutes(isAutenticated){
+    if(isAutenticated){
+        return privateRoutes;
+    } else{
+        return publicRoutes;
     }
 }
 Template.propTypes = {
