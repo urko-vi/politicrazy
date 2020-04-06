@@ -8,13 +8,12 @@ export default class PublicLayout extends Component {
 
     render() {
         const Component = this.props.component;
-        const route = this.props.route;
-        const auth = this.props.auth;
+
         return (
             <React.Fragment>
-                <Header route={route} auth={auth}/>
+                <Header />
                 <main className='container-fluid content'>
-                    <Component route={route} auth={auth}/>
+                    <Component />
                 </main>
                 <Footer/>
             </React.Fragment>
@@ -23,7 +22,6 @@ export default class PublicLayout extends Component {
 }
 
 PublicLayout.propTypes = {
-    component: Proptypes.any.isRequired,
-    route: Proptypes.object.isRequired,
-    auth: Proptypes.object.isRequired
+    component: Proptypes.oneOfType([Proptypes.element, Proptypes.func])
+        .isRequired
 };

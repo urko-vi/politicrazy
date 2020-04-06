@@ -1,5 +1,5 @@
 import { USER } from '../constants/actionTypes';
-import history from "../components/auth/History";
+import history from "../modules/common/auth/History";
 
 export default function users(state = {}, action) {
     switch (action.type) {
