@@ -1,7 +1,7 @@
 import React from 'react';
 import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
-import Loading from '../loading/index';
+import Loading from '../loading';
 import {CardGroup,Card,CardBody,CardTitle,CardSubtitle,CardLink,CardText,CardImg } from 'reactstrap';
 import * as Proptypes from "prop-types";
 

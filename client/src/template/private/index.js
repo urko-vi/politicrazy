@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as Proptypes from "prop-types";
 import Header  from '../header/AppHeader';
-import Footer  from  '../footer/AppFooter';
+import Footer  from '../footer/AppFooter';
 export default class PrivateLayout extends Component {
 
     render() {

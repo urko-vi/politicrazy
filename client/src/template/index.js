@@ -7,9 +7,9 @@ import ViewComponent from './routes/viewComponent';
 import publicRoutes  from './routes/publicRoutes';
 import * as Proptypes from "prop-types";
 
-import {Home} from '../components/home/index';
+import {Home} from '../components/home';
 import {useAuth0} from '../modules/common/auth/Auth';
-import Loading from '../components/loading/index';
+import Loading from '../components/loading';
 
 
 

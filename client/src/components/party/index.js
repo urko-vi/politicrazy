@@ -1,7 +1,7 @@
 import React from 'react';
 import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
-import Loading from '../loading/index';
+import Loading from '../loading';
 
 const GET_PARTY = gql`
   query Party($shortname: String) {

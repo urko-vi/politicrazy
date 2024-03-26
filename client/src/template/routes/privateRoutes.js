@@ -1,10 +1,10 @@
-import {Party} from '../../components/party/index';
-import {PartyList} from '../../components/partyList/index';
-import {Country} from '../../components/country/index';
-import {CountryList} from '../../components/countryList/index';
-import {ElectionList} from '../../components/electionList/index';
-import {Election} from '../../components/election/index';
-import {Continent} from "../../components/continent/index";
+import {Party} from '../../components/party';
+import {PartyList} from '../../components/partyList';
+import {Country} from '../../components/country';
+import {CountryList} from '../../components/countryList';
+import {ElectionList} from '../../components/electionList';
+import {Election} from '../../components/election';
+import {Continent} from "../../components/continent";
 import Profile from '../../components/profile/index';
 export default {
     Home: {

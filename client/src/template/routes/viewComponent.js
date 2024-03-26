@@ -2,9 +2,9 @@ import React from "react";
 import * as PropTypes from "prop-types";
 import { Route, withRouter } from "react-router-dom";
 import {useAuth0} from '../../modules/common/auth/Auth';
-import PrivateLayout from '../private/index';
-import PublicLayout from '../public/index';
-import {Home} from '../../components/home/index';
+import PrivateLayout from '../private';
+import PublicLayout from '../public';
+import {Home} from '../../components/home';
 const ViewComponent = ({ component, path, ...rest }) => {
     const { isAuthenticated } = useAuth0();
     const render = props =>{

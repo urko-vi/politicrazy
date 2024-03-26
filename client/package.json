@@ -1,5 +1,5 @@
 {
-  "name": "estracia",
+  "name": "politicrazy",
   "version": "0.1.5",
   "private": false,
   "license": "ISC",
@@ -53,7 +53,7 @@
     "react-app-env": "^1.2.3"
   },
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node ../server/server.js",
     "start:develop": "react-app-env --env-file=development.env start",
     "build": "react-app-env --env-file=production.env build",
     "test": "react-app-env test",
