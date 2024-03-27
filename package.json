@@ -1,0 +1,23 @@
+{
+  "name": "politicrazy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd client && npm install && cd ../server && npm install",
+    "start": "npm run server",
+    "server": "cd server && nodemon app.js",
+    "client": "cd client && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urko-vi/politicrazy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/urko-vi/politicrazy/issues"
+  },
+  "homepage": "https://github.com/urko-vi/politicrazy#readme"
+}
